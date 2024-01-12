@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'change.dart';
+import 'couple_add.dart';
 
 class My extends ConsumerWidget {
   const My({super.key});
@@ -10,7 +12,9 @@ class My extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: MediaQuery.of(context).size * 0.13,
+        preferredSize: MediaQuery
+            .of(context)
+            .size * 0.13,
         child: AppBar(
           backgroundColor: Colors.white,
           title: Row(
@@ -31,56 +35,12 @@ class My extends ConsumerWidget {
           ),
           centerTitle: false,
           bottom: PreferredSize(
-            preferredSize: MediaQuery.of(context).size * 0.1,
+            preferredSize: MediaQuery
+                .of(context)
+                .size * 0.1,
             child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.035,
-                      width: MediaQuery.of(context).size.width * 0.2,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: Color(0xff7c74ee),
-                          width: 2,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          '50',
-                          style: TextStyle(
-                            color: Color(0xff7c74ee),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.035,
-                      width: MediaQuery.of(context).size.width * 0.2,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: Color(0xff7c74ee),
-                          width: 2,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          '50',
-                          style: TextStyle(
-                            color: Color(0xff7c74ee),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
@@ -98,13 +58,13 @@ class My extends ConsumerWidget {
                   backgroundImage: AssetImage(
                       'assets/profile_image1.jpg'), // 첫 번째 프로필 이미지 경로
                 ),
-                SizedBox(width: 20),
+                SizedBox(width: 10),
                 Icon(
                   Icons.favorite,
                   color: Colors.deepPurple, // 하트 이모지 색상
                   size: 40, // 하트 이모지 크기
                 ),
-                SizedBox(width: 20),
+                SizedBox(width: 10),
                 CircleAvatar(
                   radius: 80,
                   backgroundImage: AssetImage(
@@ -121,33 +81,57 @@ class My extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: MediaQuery.of(context).size.height * 0.25,
-                  height: MediaQuery.of(context).size.height * 0.055,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: Color(0xff7c74ee),
-                      width: 2,
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Change()),
+                    );
+                  },
+                  child: Container(
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.25,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.055,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Color(0xff7c74ee),
+                        width: 2,
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '프로필 수정',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                    child: Center(
+                      child: Text(
+                        '프로필 수정',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                 ),
                 SizedBox(width: 20),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Add()),
+                    );
                   },
                   child: Container(
-                    width: MediaQuery.of(context).size.height * 0.25,
-                    height: MediaQuery.of(context).size.height * 0.055,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.25,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.055,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
@@ -168,40 +152,43 @@ class My extends ConsumerWidget {
                 ),
               ],
             ),
-            SizedBox(height: 200),
-            Container(
-              child: Center(
-                child: Text(
-                  '로그아웃',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal,
-                  ),
+            SizedBox(height: 120),
+            GestureDetector(
+              onTap: () {
+
+              },
+              child: Text(
+                '로그아웃',
+                style: TextStyle(
+                  color: Color(0xff7c74ee),
+                  fontSize: 15,
+                  decoration: TextDecoration.underline,
                 ),
               ),
             ),
+            SizedBox(height: 40),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _buildProfileInfo(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            '$label: ',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            value,
-            style: TextStyle(fontSize: 16),
-          ),
-        ],
-      ),
-    );
-  }
+Widget _buildProfileInfo(String label, String value) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          '$label: ',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          value,
+          style: TextStyle(fontSize: 16),
+        ),
+      ],
+    ),
+  );
 }
