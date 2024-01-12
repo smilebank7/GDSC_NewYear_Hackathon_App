@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import '/pages/meta/multi_scenario.dart';
+import '/pages/meta/game.dart';
 import '/pages/meta/player/game_player.dart';
 import '/pages/meta/utils/constants/game_consts.dart';
 import '/pages/meta/utils/enums/map_id_enum.dart';
@@ -7,6 +7,7 @@ import '/pages/meta/utils/enums/show_in_enum.dart';
 import '/pages/meta/utils/sensors/exit_map_sensor.dart';
 import '/pages/meta/player/pirate_sprite_sheet.dart';
 import 'package:flutter/material.dart';
+import '/pages/meta/player/enemy_player.dart';
 
 
 class MapBiome2 extends StatelessWidget {

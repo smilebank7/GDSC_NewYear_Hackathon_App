@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:flutter/cupertino.dart';
 import '/pages/login/login_password_field.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,13 +20,23 @@ class LoginPage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'GDSC 팀Q',
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFB8B7FA)),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  CupertinoIcons.heart_circle_fill,
+                  color: Color(0xFFB8B7FA),
+                  size: 40,
+                ),
+                const Text(
+                  'LUSTLE',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFB8B7FA)),
+                  ),
+              ],
+            ),
             const SizedBox(height: 20),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),

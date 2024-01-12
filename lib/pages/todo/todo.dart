@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'todo_card.dart';
-
+import 'todo_card_mate.dart';
+import 'package:go_router/go_router.dart';
 class Todo extends ConsumerWidget {
   const Todo({super.key});
 
@@ -40,7 +41,7 @@ class Todo extends ConsumerWidget {
                   size: 35 ,
                 ),
                 onPressed: () {
-                  // 목록 아이콘을 눌렀을 때 수행할 동작 추가
+                  context.go('/todo/add');
                 },
               ),],
           ),
@@ -52,7 +53,7 @@ class Todo extends ConsumerWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: 3,
+                    itemCount: 4,
                     itemBuilder: (context, index){
                       return TodoCard();
                     },
@@ -65,6 +66,33 @@ class Todo extends ConsumerWidget {
                     thickness: 2,
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children:[
+                          Text(
+                            '친구의 TO DO',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xffb774ee),
+                            ),
+                          )
+                        ]
+                      ),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 4,
+                        itemBuilder: (context, index){
+                          return TodoCardMate();
+                        },
+                      ),
+                    ]
+                  )
+                )
               ],
             )
         )

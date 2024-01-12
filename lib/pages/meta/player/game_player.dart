@@ -1,5 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import '/pages/meta/utils/constants/game_consts.dart';
+import '/pages/meta/player/enemy_player.dart';
+import '/pages/meta/player/knight_player_sheet.dart';
 
 class GamePlayer extends SimplePlayer with BlockMovementCollision {
   static const sizePlayer = defaultTileSize * 1.5;
@@ -33,5 +35,11 @@ class GamePlayer extends SimplePlayer with BlockMovementCollision {
       ),
     );
     return super.onLoad();
+  }
+
+  @override
+  void onMount() {
+    super.onMount();
+    gameRef.add(EnemyPlayer(Vector2(defaultTileSize * 2.5, defaultTileSize * 10.5), KnightSpriteSheet.playerAnimations(),));
   }
 }

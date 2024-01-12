@@ -1,12 +1,15 @@
 import 'package:bonfire/bonfire.dart';
-import '/pages/meta/multi_scenario.dart';
+import 'package:gdsc_newyear_q/pages/meta/player/knight_player_sheet.dart';
+import '/pages/meta/game.dart';
 import '/pages/meta/player/game_player.dart';
 import '/pages/meta/utils/constants/game_consts.dart';
 import '/pages/meta/utils/enums/map_id_enum.dart';
 import '/pages/meta/utils/enums/show_in_enum.dart';
 import '/pages/meta/utils/sensors/exit_map_sensor.dart';
 import '/pages/meta/player/pirate_sprite_sheet.dart';
+import '/pages/meta/player/knight_player_sheet.dart';
 import 'package:flutter/material.dart';
+import '/pages/meta/player/enemy_player.dart';
 
 class MapBiome1 extends StatelessWidget {
   final ShowInEnum showInEnum;
@@ -43,6 +46,7 @@ class MapBiome1 extends StatelessWidget {
             p.size,
             _exitMap,
           ),
+          'enemy': (x) => EnemyPlayer(_getInitPosition(), KnightSpriteSheet.playerAnimations(),),
         },
       ),
       cameraConfig: CameraConfig(

@@ -9,6 +9,8 @@ import '/pages/home/home.dart';
 import '/pages/todo/todo.dart';
 import '/pages/meta/meta.dart';
 import '/pages/my/my.dart';
+import '/pages/todo/todo_add.dart';
+import '/pages/todo/todo_summit.dart';
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(initialLocation: '/login', routes: <RouteBase>[
@@ -35,7 +37,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                     icon: Icon(Icons.person), label: '마이'),
               ],
               backgroundColor: Colors.white,
-              selectedItemColor: Color(0xFFB8B7FA),
+              selectedItemColor: Color(0xff7c74ee),
               unselectedItemColor: Colors.grey,
               type: BottomNavigationBarType.fixed,
               currentIndex: navigationShell.currentIndex,
@@ -60,6 +62,20 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             builder: (context, state) {
               return const Todo();
             },
+            routes: <RouteBase>[
+              GoRoute(
+                path: 'add',
+                builder: (context, state) {
+                  return const TodoAdd();
+                },
+              ),
+              GoRoute(
+                path: 'summit',
+                builder: (context, state) {
+                  return const TodoSummit();
+                },
+              )
+            ],
           )
         ]),
         StatefulShellBranch(routes: <RouteBase>[

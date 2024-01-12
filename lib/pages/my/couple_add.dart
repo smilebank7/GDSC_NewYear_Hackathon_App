@@ -57,21 +57,36 @@ class Add extends ConsumerWidget {
                   color: Colors.black,
                 ),
                 SizedBox(height: 20),
-                Text(
-                  "링크로 공유하기",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '초대 코드 : '
+                    ),
+                    Text(
+                      '1234567890',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: Text(
+                    'or'
+                  )
                 ),
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Text(
+                      '초대 코드 입력 : '
+                    ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.height * 0.05,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
@@ -79,21 +94,20 @@ class Add extends ConsumerWidget {
                           width: 2,
                         ),
                       ),
-                      child: Text(
-                        "https://link",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w100,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          contentPadding:
+                          EdgeInsets.symmetric(horizontal: 10),
+                          border: InputBorder.none,
                         ),
                       ),
                     ),
-                    SizedBox(width: 10),
                     IconButton(
-                      icon: Icon(Icons.share, color: Color(0xff7c74ee)),
-                      onPressed: () {
-                        // Add your sharing logic here
-                      },
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.check_circle,
+                        color: Color(0xff7c74ee),
+                      ),
                     ),
                   ],
                 ),
