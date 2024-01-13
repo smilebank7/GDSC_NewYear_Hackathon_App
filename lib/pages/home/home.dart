@@ -2,15 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:gdsc_newyear_q/models/todo_DTO.dart';
 import '/pages/home/todo_card_mate2.dart';
 
 import 'pet_card.dart';
 
-class Home extends ConsumerWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState createState() => _HomeState();
+}
+
+class _HomeState extends ConsumerState<Home> {
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: PreferredSize(
@@ -137,7 +144,7 @@ class Home extends ConsumerWidget {
                 child: Column(children: [
                   Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                     Text(
-                      '완료된 친구\'S TO DO',
+                      '완료된 연인\'S TO DO',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -147,13 +154,15 @@ class Home extends ConsumerWidget {
                   ]),
                   ListView.builder(
                     shrinkWrap: true,
-                    itemCount: 4,
+                    itemCount: 2,
                     itemBuilder: (context, index) {
+                      TodoDTO todo = todoList[index];
                       return InkWell(
                           onTap: () {
                             showModalBottomSheet(
                                 context: context,
                                 builder: (BuildContext context) {
+                                  TodoDTO todo = todoList[index];
                                   return Container(
                                       child: Column(
                                     children: [
@@ -170,7 +179,7 @@ class Home extends ConsumerWidget {
                                           ),
                                           child: ListTile(
                                             title: Text(
-                                              '할일',
+                                              todo.title,
                                               style: TextStyle(
                                                 color: Color(0xffb774ee),
                                                 fontWeight: FontWeight.bold,
@@ -191,15 +200,30 @@ class Home extends ConsumerWidget {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Expanded(
-                                          child: Container(
-                                            height: MediaQuery.of(context).size.height * 0.2,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              border: Border.all(
-                                                color: Color(0xffb774ee),
-                                                width: 2,
+                                        child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.8,
+                                          height: MediaQuery.of(context).size.height * 0.2,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            border: Border.all(
+                                              color: Color(0xffb774ee),
+                                              width: 2,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            child: Center(
+                                              child: Text(
+                                                todo.description,
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -256,7 +280,7 @@ class Home extends ConsumerWidget {
                                   ));
                                 });
                           },
-                          child: TodoCardMate2());
+                          child: TodoCardMate2(todoDTO: todo,));
                     },
                   ),
                 ]))
@@ -264,3 +288,17 @@ class Home extends ConsumerWidget {
         )));
   }
 }
+
+List<TodoDTO> todoList = [
+  TodoDTO(
+    title: '플러터',
+    subtitle: 'Dart 문법 공부',
+    description: '공부하기 너무 싫다~',
+  ),
+  TodoDTO(
+    title: '스프링',
+    subtitle: '스프링 부트',
+    description: '재미있는 서버 공부',
+  ),
+
+];

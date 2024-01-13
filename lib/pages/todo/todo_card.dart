@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import '/models/todo_DTO.dart';
 
 class TodoCard extends ConsumerStatefulWidget {
-  const TodoCard({super.key});
+  final TodoDTO todoDTO;
+  const TodoCard({required this.todoDTO, super.key});
 
   @override
   ConsumerState createState() => _TodoCardState();
@@ -29,11 +31,11 @@ class _TodoCardState extends ConsumerState<TodoCard> {
           },
           child: ListTile(
             leading: Icon(
-              CupertinoIcons.checkmark_alt_circle_fill,
+              CupertinoIcons.checkmark_alt_circle,
               color: Color(0xff7c74ee),
             ),
             title: Text(
-              '할일',
+              '${widget.todoDTO.title} | ${widget.todoDTO.subtitle}',
               style: TextStyle(
                 color: Color(0xff7c74ee),
                 fontWeight: FontWeight.bold,

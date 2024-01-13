@@ -5,11 +5,19 @@ import 'package:cupertino_icons/cupertino_icons.dart';
 import 'todo_card.dart';
 import 'todo_card_mate.dart';
 import 'package:go_router/go_router.dart';
-class Todo extends ConsumerWidget {
+import '/models/todo_DTO.dart';
+
+class Todo extends ConsumerStatefulWidget {
   const Todo({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState createState() => _TodoState();
+}
+
+class _TodoState extends ConsumerState<Todo> {
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: PreferredSize(
@@ -55,7 +63,8 @@ class Todo extends ConsumerWidget {
                     shrinkWrap: true,
                     itemCount: 4,
                     itemBuilder: (context, index){
-                      return TodoCard();
+                      TodoDTO todo1 = todoList1[index];
+                      return TodoCard(todoDTO: todo1);
                     },
                   )
                 ),
@@ -87,7 +96,8 @@ class Todo extends ConsumerWidget {
                         shrinkWrap: true,
                         itemCount: 4,
                         itemBuilder: (context, index){
-                          return TodoCardMate();
+                          TodoDTO todo2 = todoList2[index];
+                          return TodoCardMate(todoDTO: todo2);
                         },
                       ),
                     ]
@@ -100,4 +110,51 @@ class Todo extends ConsumerWidget {
   }
 }
 
+List<TodoDTO> todoList1 = [
+  TodoDTO(
+    title: '운동하기',
+    subtitle: '상체운동',
+    description: '팔굽혀펴기 10회, 런지 10회',
+  ),
+  TodoDTO(
+    title: '공부하기',
+    subtitle: '수학',
+    description: '수학 1장 풀기',
+  ),
+  TodoDTO(
+    title: '책읽기',
+    subtitle: '소설',
+    description: '소설 1권 읽기',
+  ),
+  TodoDTO(
+    title: '청소하기',
+    subtitle: '방',
+    description: '방 청소하기',
+  ),
 
+];
+
+List<TodoDTO> todoList2 = [
+  TodoDTO(
+    title: '청소하기',
+    subtitle: '방',
+    description: '방 청소하기',
+  ),
+  TodoDTO(
+    title: '공부하기',
+    subtitle: '수학',
+    description: '수학 1장 풀기',
+  ),
+  TodoDTO(
+    title: '운동하기',
+    subtitle: '상체운동',
+    description: '팔굽혀펴기 10회, 런지 10회',
+  ),
+  TodoDTO(
+    title: '책읽기',
+    subtitle: '소설',
+    description: '소설 1권 읽기',
+  ),
+
+
+];
